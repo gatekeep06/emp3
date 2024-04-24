@@ -31,7 +31,7 @@ class MainActivity : Activity() {
             products.add(
                 Product(
                     "Product $i", i * 1000,
-                    R.drawable.ic_launcher_background, false
+                    com.google.android.gms.base.R.drawable.googleg_standard_color_18, false
                 )
             )
         }

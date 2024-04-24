@@ -33,10 +33,10 @@
             android:text="">
         </TextView>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background">
-    </ImageView>
+        android:src="@drawable/common_google_signin_btn_icon_dark"></ImageView>
 </LinearLayout>
