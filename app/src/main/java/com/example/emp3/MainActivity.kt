@@ -12,8 +12,6 @@ class MainActivity : Activity() {
     var products: ArrayList<Product> = ArrayList<Product>()
     var boxAdapter: BoxAdapter? = null
 
-    /** Called when the activity is first created.  */
-    @SuppressLint("MissingInflatedId")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
