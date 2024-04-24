@@ -12,17 +12,17 @@ import android.widget.TextView
 
 class BoxAdapter internal constructor(var ctx: Context, products: ArrayList<Product>) :
     BaseAdapter() {
-    var lInflater: LayoutInflater
-    var objects: ArrayList<Product>
+    var layoutInflater: LayoutInflater
+    var items: ArrayList<Product>
 
     // кол-во элементов
     override fun getCount(): Int {
-        return objects.size
+        return items.size
     }
 
     // элемент по позиции
     override fun getItem(position: Int): Any {
-        return objects[position]
+        return items[position]
     }
 
     // id по позиции
@@ -35,7 +35,7 @@ class BoxAdapter internal constructor(var ctx: Context, products: ArrayList<Prod
         // используем созданные, но не используемые view
         var view = convertView
         if (view == null) {
-            view = lInflater.inflate(R.layout.list_item, parent, false)
+            view = layoutInflater.inflate(R.layout.list_item, parent, false)
         }
         val p = getProduct(position)
 
@@ -44,13 +44,13 @@ class BoxAdapter internal constructor(var ctx: Context, products: ArrayList<Prod
         (view!!.findViewById<View>(R.id.tvDescr) as TextView).text = p.name
         (view!!.findViewById<View>(R.id.tvPrice) as TextView).setText(p.getPriceString())
         (view!!.findViewById<View>(R.id.ivImage) as ImageView).setImageResource(p.image)
-        val cbBuy = view!!.findViewById<View>(R.id.cbBox) as CheckBox
+        val checkBox = view!!.findViewById<View>(R.id.cbBox) as CheckBox
         // присваиваем чекбоксу обработчик
-        cbBuy.setOnCheckedChangeListener(myCheckChangeList)
+        checkBox.setOnCheckedChangeListener(myCheckChangeList)
         // пишем позицию
-        cbBuy.tag = position
+        checkBox.tag = position
         // заполняем данными из товаров: в корзине или нет
-        cbBuy.isChecked = p.box
+        checkBox.isChecked = p.box
         return view
     }
 
@@ -61,7 +61,7 @@ class BoxAdapter internal constructor(var ctx: Context, products: ArrayList<Prod
 
     fun getBox(): java.util.ArrayList<Product>? {
         val box = java.util.ArrayList<Product>()
-        for (p in objects) {
+        for (p in items) {
             // если в корзине
             if (p.box) box.add(p)
         }
@@ -75,8 +75,8 @@ class BoxAdapter internal constructor(var ctx: Context, products: ArrayList<Prod
         }
 
     init {
-        objects = products
-        lInflater = ctx
+        items = products
+        layoutInflater = ctx
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     }
 }
